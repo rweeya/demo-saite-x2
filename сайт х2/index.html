@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>BuildMaster | Качественный ремонт под ключ</title>
+    <title>BuildMaster | Ремонт под ключ</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -15,8 +15,8 @@
         }
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #0F0F0F;
-            color: #E0E0E0;
+            background-color: #0A0F1A;
+            color: #E5E9F0;
             line-height: 1.5;
             overflow-x: hidden;
         }
@@ -28,7 +28,7 @@
             font-weight: 600;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: #D4A373;
+            color: #E6B17E;
             margin-bottom: 2rem;
             text-align: center;
         }
@@ -36,12 +36,24 @@
             text-align: center;
             max-width: 700px;
             margin: -1rem auto 3rem auto;
-            color: #9A9A9A;
+            color: #8A9BB0;
         }
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 5%;
+            position: relative;
+            z-index: 5;
+        }
+        /* === НОВЫЙ 3D ФОН === */
+        #canvas-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
         }
         /* Preloader */
         .preloader {
@@ -50,7 +62,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #0A0A0A;
+            background: #050A12;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -60,7 +72,7 @@
         .loader-line {
             width: 200px;
             height: 2px;
-            background: #2A2A2A;
+            background: #1F2A3A;
             position: relative;
             overflow: hidden;
         }
@@ -70,8 +82,8 @@
             left: 0;
             width: 50%;
             height: 100%;
-            background: #D4A373;
-            animation: load 1.2s infinite;
+            background: #E6B17E;
+            animation: load 1s infinite;
         }
         @keyframes load {
             0% { left: -50%; }
@@ -91,33 +103,33 @@
             background: transparent;
         }
         header.scrolled {
-            background: rgba(10, 10, 10, 0.95);
+            background: rgba(5, 10, 18, 0.9);
             backdrop-filter: blur(12px);
             padding: 0.8rem 5%;
-            border-bottom: 1px solid rgba(212, 163, 115, 0.2);
+            border-bottom: 1px solid rgba(230, 177, 126, 0.3);
         }
         .logo {
             font-size: 2rem;
             font-weight: 700;
-            color: #F5F5F5;
+            color: #FFF;
             letter-spacing: 4px;
         }
         .logo span {
-            color: #D4A373;
+            color: #E6B17E;
         }
         .nav-links {
             display: flex;
             gap: 2.2rem;
         }
         .nav-links a {
-            color: #E0E0E0;
+            color: #E5E9F0;
             text-decoration: none;
             font-weight: 500;
             font-size: 1.1rem;
             transition: 0.3s;
         }
         .nav-links a:hover {
-            color: #D4A373;
+            color: #E6B17E;
         }
         .burger {
             display: none;
@@ -127,38 +139,25 @@
         .burger span {
             width: 28px;
             height: 2px;
-            background: #D4A373;
+            background: #E6B17E;
             margin: 4px;
             transition: 0.3s;
         }
         /* Hero */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%);
             display: flex;
             align-items: center;
             position: relative;
-            overflow: hidden;
-        }
-        .hero-bg-texture {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://images.pexels.com/photos/2082087/pexels-photo-2082087.jpeg?auto=compress&cs=tinysrgb&w=1600');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.12;
-            filter: grayscale(1);
+            z-index: 2;
         }
         .hero-content {
             max-width: 800px;
             padding: 0 5%;
-            position: relative;
-            z-index: 2;
             animation: fadeUp 1s ease-out;
         }
         .hero-tag {
-            color: #D4A373;
+            color: #E6B17E;
             letter-spacing: 6px;
             font-weight: 300;
             margin-bottom: 1rem;
@@ -171,11 +170,11 @@
             color: #FFFFFF;
         }
         .hero h1 span {
-            color: #D4A373;
+            color: #E6B17E;
         }
         .hero p {
             font-size: 1.1rem;
-            color: #B0B0B0;
+            color: #B7C5D6;
             margin-bottom: 2rem;
             max-width: 600px;
         }
@@ -198,68 +197,58 @@
             border: none;
         }
         .btn-primary {
-            background: #D4A373;
-            color: #0A0A0A;
+            background: #E6B17E;
+            color: #0A0F1A;
         }
         .btn-primary:hover {
-            background: #C28D5B;
+            background: #D49A62;
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(212, 163, 115, 0.3);
+            box-shadow: 0 10px 20px rgba(230, 177, 126, 0.3);
         }
         .btn-outline {
-            border: 1.5px solid #D4A373;
-            color: #D4A373;
+            border: 1.5px solid #E6B17E;
+            color: #E6B17E;
             background: transparent;
         }
         .btn-outline:hover {
-            background: rgba(212, 163, 115, 0.1);
+            background: rgba(230, 177, 126, 0.1);
             transform: translateY(-3px);
         }
         @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        /* Cards */
+        /* Карточки услуг с прозрачностью */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
         .service-card {
-            background: rgba(30, 30, 30, 0.6);
-            backdrop-filter: blur(2px);
+            background: rgba(20, 30, 45, 0.7);
+            backdrop-filter: blur(10px);
             padding: 2rem;
-            border-radius: 4px;
-            border-bottom: 3px solid #D4A373;
+            border-radius: 16px;
+            border-bottom: 3px solid #E6B17E;
             transition: 0.3s;
         }
         .service-card:hover {
             transform: translateY(-8px);
-            background: #222;
+            background: rgba(30, 45, 65, 0.9);
         }
         .service-card i {
             font-size: 2.5rem;
-            color: #D4A373;
+            color: #E6B17E;
             margin-bottom: 1rem;
         }
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            font-family: 'Cormorant Garamond', serif;
-        }
-        /* Calculator */
+        /* Калькулятор (без слова "смета") */
         .calculator-wrap {
-            background: #131313;
+            background: rgba(10, 20, 35, 0.85);
+            backdrop-filter: blur(12px);
             padding: 2rem;
-            border-radius: 8px;
-            margin-top: 2rem;
+            border-radius: 24px;
+            border: 1px solid rgba(230, 177, 126, 0.3);
         }
         .calc-row {
             display: flex;
@@ -274,30 +263,30 @@
         .calc-group label {
             display: block;
             margin-bottom: 8px;
-            color: #D4A373;
+            color: #E6B17E;
             font-weight: 500;
         }
         .calc-group input, .calc-group select {
             width: 100%;
             padding: 12px;
-            background: #1E1E1E;
-            border: 1px solid #333;
-            color: #E0E0E0;
-            border-radius: 2px;
+            background: #0A111C;
+            border: 1px solid #2A3A50;
+            color: #FFF;
+            border-radius: 12px;
         }
         .result-area {
             text-align: center;
             margin-top: 2rem;
             padding: 1.5rem;
-            background: #0A0A0A;
-            border-left: 4px solid #D4A373;
+            background: rgba(0,0,0,0.5);
+            border-radius: 20px;
+            border-left: 4px solid #E6B17E;
         }
         .result-price {
             font-size: 2.5rem;
             font-weight: 700;
-            color: #D4A373;
+            color: #E6B17E;
         }
-        /* Before/After slider */
         .ba-container {
             display: flex;
             flex-wrap: wrap;
@@ -306,8 +295,8 @@
         }
         .ba-item {
             flex: 1;
-            background: #1A1A1A;
-            border-radius: 8px;
+            background: #111A24;
+            border-radius: 20px;
             overflow: hidden;
         }
         .ba-img {
@@ -316,57 +305,35 @@
             object-fit: cover;
             transition: 0.5s;
         }
-        .ba-item:hover .ba-img {
-            transform: scale(1.02);
-        }
-        .ba-caption {
-            padding: 1rem;
-            text-align: center;
-            font-weight: 500;
-        }
-        /* Swiper Gallery */
-        .swiper {
-            width: 100%;
-            padding: 20px 0;
-        }
-        .swiper-slide {
-            border-radius: 8px;
-            overflow: hidden;
-            height: 400px;
-        }
-        .swiper-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        /* Contact Form */
         .contact-flex {
             display: flex;
             flex-wrap: wrap;
             gap: 3rem;
             margin-top: 2rem;
         }
-        .contact-info {
+        .contact-info, .contact-form {
             flex: 1;
-        }
-        .contact-form {
-            flex: 1;
+            background: rgba(15, 25, 40, 0.7);
+            backdrop-filter: blur(8px);
+            padding: 2rem;
+            border-radius: 24px;
         }
         .contact-form input, .contact-form textarea {
             width: 100%;
             padding: 14px;
             margin-bottom: 1rem;
-            background: #1A1A1A;
-            border: 1px solid #333;
+            background: #0A111C;
+            border: 1px solid #2A3A50;
+            border-radius: 12px;
             color: white;
-            font-family: 'Montserrat', sans-serif;
         }
         footer {
-            background: #050505;
+            background: #03060A;
             padding: 2rem;
             text-align: center;
-            border-top: 1px solid #222;
-            margin-top: 3rem;
+            margin-top: 4rem;
+            position: relative;
+            z-index: 5;
         }
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.8rem; }
@@ -376,7 +343,7 @@
                 right: -100%;
                 width: 70%;
                 height: calc(100vh - 70px);
-                background: #0F0F0F;
+                background: #0A111C;
                 flex-direction: column;
                 align-items: center;
                 padding-top: 3rem;
@@ -384,7 +351,6 @@
             }
             .nav-links.active { right: 0; }
             .burger { display: flex; }
-            .section-title { font-size: 2.2rem; }
         }
         .fade-in {
             opacity: 0;
@@ -398,6 +364,8 @@
     </style>
 </head>
 <body>
+
+<canvas id="canvas-bg"></canvas>
 
 <div class="preloader" id="preloader"><div class="loader-line"></div></div>
 
@@ -414,13 +382,12 @@
 </header>
 
 <section id="home" class="hero">
-    <div class="hero-bg-texture"></div>
     <div class="hero-content">
         <div class="hero-tag">РЕМОНТ ПОД КЛЮЧ</div>
         <h1>Качество, которое <span>не требует</span> компромиссов</h1>
         <p>Строительная компания BuildMaster — более 120 реализованных объектов. Дизайн, отделка, контроль сроков.</p>
         <div class="btn-group">
-            <a href="#calc" class="btn btn-primary">Рассчитать смету</a>
+            <a href="#calc" class="btn btn-primary">Рассчитать стоимость</a>
             <a href="#contact" class="btn btn-outline">Заказать звонок</a>
         </div>
     </div>
@@ -445,7 +412,7 @@
                 <div class="calc-group"><label>Тип помещения</label><select id="roomtype"><option value="1">Квартира</option><option value="1.2">Дом/Коттедж</option><option value="0.9">Офис</option></select></div>
                 <div class="calc-group"><label>Вид ремонта</label><select id="repairtype"><option value="5000">Эконом</option><option value="9500" selected>Стандарт</option><option value="15000">Премиум</option><option value="25000">Люкс</option></select></div>
             </div>
-            <div class="result-area"><span class="result-price" id="priceResult">0 ₽</span><br><small>* Примерная стоимость материалов + работы. Точная смета после замера</small></div>
+            <div class="result-area"><span class="result-price" id="priceResult">0 ₽</span><br><small>* Примерная стоимость материалов + работы. Точный расчёт после замера</small></div>
         </div>
     </section>
 
@@ -461,7 +428,7 @@
     <section id="contact">
         <h2 class="section-title fade-in">Получить консультацию</h2>
         <div class="contact-flex">
-            <div class="contact-info fade-in"><i class="fas fa-map-marker-alt" style="color:#D4A373;"></i> <p>Москва, ул. Строителей 12, БЦ "Технопарк"</p><i class="fas fa-phone-alt" style="color:#D4A373; margin-top:1rem;"></i> <p>+7 (495) 555-33-22</p><i class="fas fa-clock"></i> <p>Ежедневно 9:00–20:00</p></div>
+            <div class="contact-info fade-in"><i class="fas fa-map-marker-alt" style="color:#E6B17E;"></i> <p>Москва, ул. Строителей 12, БЦ "Технопарк"</p><i class="fas fa-phone-alt" style="color:#E6B17E; margin-top:1rem;"></i> <p>+7 (495) 555-33-22</p><i class="fas fa-clock"></i> <p>Ежедневно 9:00–20:00</p></div>
             <div class="contact-form fade-in"><form id="leadForm"><input type="text" placeholder="Ваше имя" id="name" required><input type="tel" placeholder="Телефон" id="phone" required><textarea rows="3" placeholder="Опишите задачу..."></textarea><button type="submit" class="btn btn-primary">Отправить заявку</button></form></div>
         </div>
     </section>
@@ -470,6 +437,121 @@
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
+    // 3D ФОН — шестиугольная сетка + объект (куб)
+    const canvas = document.getElementById('canvas-bg');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let mouseX = 0, mouseY = 0;
+    let time = 0;
+    let hexGrid = [];
+    
+    function resizeCanvas() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+        initHexGrid();
+    }
+    
+    function initHexGrid() {
+        hexGrid = [];
+        const hexSize = 45;
+        const rows = Math.ceil(height / (hexSize * 1.7)) + 2;
+        const cols = Math.ceil(width / (hexSize * 1.5)) + 2;
+        for (let i = 0; i < rows; i++) {
+            for (let j = 0; j < cols; j++) {
+                let x = j * hexSize * 1.5;
+                let y = i * hexSize * 1.7 + (j % 2) * hexSize * 0.85;
+                hexGrid.push({ x, y, size: hexSize });
+            }
+        }
+    }
+    
+    function drawHexagon(x, y, size, glow) {
+        ctx.beginPath();
+        for (let i = 0; i < 6; i++) {
+            let angle = i * Math.PI / 3;
+            let px = x + size * Math.cos(angle);
+            let py = y + size * Math.sin(angle);
+            if (i === 0) ctx.moveTo(px, py);
+            else ctx.lineTo(px, py);
+        }
+        ctx.closePath();
+        ctx.strokeStyle = `rgba(230, 177, 126, ${0.2 + glow * 0.2})`;
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+    }
+    
+    function drawObject(px, py, timeVal) {
+        // Абстрактный 3D-объект — вращающийся куб в изометрии
+        const size3d = 80;
+        const angle = timeVal * 0.005;
+        const offsetX = Math.sin(angle) * 15;
+        const offsetY = Math.cos(angle * 0.7) * 10;
+        const centerX = px + offsetX;
+        const centerY = py - 40 + offsetY;
+        ctx.save();
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = "#E6B17E";
+        ctx.beginPath();
+        // Верхняя грань
+        ctx.moveTo(centerX, centerY);
+        ctx.lineTo(centerX + size3d * 0.6, centerY - size3d * 0.4);
+        ctx.lineTo(centerX, centerY - size3d * 0.8);
+        ctx.lineTo(centerX - size3d * 0.6, centerY - size3d * 0.4);
+        ctx.fillStyle = "rgba(230, 177, 126, 0.25)";
+        ctx.fill();
+        ctx.strokeStyle = "#E6B17E";
+        ctx.stroke();
+        // Боковые грани
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.lineTo(centerX + size3d * 0.6, centerY - size3d * 0.4);
+        ctx.lineTo(centerX + size3d * 0.6, centerY + size3d * 0.2);
+        ctx.lineTo(centerX, centerY + size3d * 0.6);
+        ctx.fillStyle = "rgba(200, 140, 90, 0.2)";
+        ctx.fill();
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.lineTo(centerX - size3d * 0.6, centerY - size3d * 0.4);
+        ctx.lineTo(centerX - size3d * 0.6, centerY + size3d * 0.2);
+        ctx.lineTo(centerX, centerY + size3d * 0.6);
+        ctx.fillStyle = "rgba(180, 120, 70, 0.2)";
+        ctx.fill();
+        ctx.stroke();
+        ctx.restore();
+    }
+    
+    function animateBackground() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, width, height);
+        // Градиентный фон ярче
+        const grad = ctx.createLinearGradient(0, 0, width, height);
+        grad.addColorStop(0, '#0A1525');
+        grad.addColorStop(1, '#121F30');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, width, height);
+        
+        time++;
+        for (let h of hexGrid) {
+            let dx = (mouseX - width/2) * 0.0005;
+            let dy = (mouseY - height/2) * 0.0005;
+            let glow = Math.sin(time * 0.01 + h.x * 0.01) * 0.5 + 0.5;
+            drawHexagon(h.x + dx * 20, h.y + dy * 15, h.size, glow);
+        }
+        // Динамический объект в правом нижнем углу
+        drawObject(width - 120, height - 120, time);
+        drawObject(width - 220, height - 80, time + 30);
+        requestAnimationFrame(animateBackground);
+    }
+    
+    window.addEventListener('resize', () => { resizeCanvas(); });
+    window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+    resizeCanvas();
+    animateBackground();
+    
     setTimeout(()=>document.getElementById('preloader').style.display='none', 800);
     window.addEventListener('scroll',()=>{document.getElementById('header').classList.toggle('scrolled',window.scrollY>50)});
     document.getElementById('burger').addEventListener('click',()=>{document.getElementById('navLinks').classList.toggle('active')});
@@ -482,7 +564,7 @@
     
     const faders=document.querySelectorAll('.fade-in'); const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1}); faders.forEach(f=>obs.observe(f));
     
-    document.getElementById('leadForm').addEventListener('submit',(e)=>{e.preventDefault(); alert('✅ Заявка принята! Менеджер свяжется с вами в течение 15 минут.'); e.target.reset();});
+    document.getElementById('leadForm').addEventListener('submit',(e)=>{e.preventDefault(); alert('✅ Заявка принята! Менеджер свяжется с вами в ближайшее время.'); e.target.reset();});
 </script>
 </body>
 </html>
