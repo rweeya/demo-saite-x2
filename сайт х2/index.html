@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>BuildMaster | Качественный ремонт под ключ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #0F0F0F;
+            color: #E0E0E0;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, .logo, .nav-links a, .section-title {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .section-title {
+            font-size: 3rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #D4A373;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .section-sub {
+            text-align: center;
+            max-width: 700px;
+            margin: -1rem auto 3rem auto;
+            color: #9A9A9A;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0A0A0A;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: 0.5s;
+        }
+        .loader-line {
+            width: 200px;
+            height: 2px;
+            background: #2A2A2A;
+            position: relative;
+            overflow: hidden;
+        }
+        .loader-line:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: #D4A373;
+            animation: load 1.2s infinite;
+        }
+        @keyframes load {
+            0% { left: -50%; }
+            100% { left: 100%; }
+        }
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            transition: 0.4s;
+            background: transparent;
+        }
+        header.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 0.8rem 5%;
+            border-bottom: 1px solid rgba(212, 163, 115, 0.2);
+        }
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #F5F5F5;
+            letter-spacing: 4px;
+        }
+        .logo span {
+            color: #D4A373;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+        }
+        .nav-links a {
+            color: #E0E0E0;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            color: #D4A373;
+        }
+        .burger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .burger span {
+            width: 28px;
+            height: 2px;
+            background: #D4A373;
+            margin: 4px;
+            transition: 0.3s;
+        }
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-bg-texture {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.pexels.com/photos/2082087/pexels-photo-2082087.jpeg?auto=compress&cs=tinysrgb&w=1600');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.12;
+            filter: grayscale(1);
+        }
+        .hero-content {
+            max-width: 800px;
+            padding: 0 5%;
+            position: relative;
+            z-index: 2;
+            animation: fadeUp 1s ease-out;
+        }
+        .hero-tag {
+            color: #D4A373;
+            letter-spacing: 6px;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+        .hero h1 {
+            font-size: 4.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: #FFFFFF;
+        }
+        .hero h1 span {
+            color: #D4A373;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            color: #B0B0B0;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 14px 34px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 2px;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary {
+            background: #D4A373;
+            color: #0A0A0A;
+        }
+        .btn-primary:hover {
+            background: #C28D5B;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 163, 115, 0.3);
+        }
+        .btn-outline {
+            border: 1.5px solid #D4A373;
+            color: #D4A373;
+            background: transparent;
+        }
+        .btn-outline:hover {
+            background: rgba(212, 163, 115, 0.1);
+            transform: translateY(-3px);
+        }
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Cards */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .service-card {
+            background: rgba(30, 30, 30, 0.6);
+            backdrop-filter: blur(2px);
+            padding: 2rem;
+            border-radius: 4px;
+            border-bottom: 3px solid #D4A373;
+            transition: 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            background: #222;
+        }
+        .service-card i {
+            font-size: 2.5rem;
+            color: #D4A373;
+            margin-bottom: 1rem;
+        }
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        /* Calculator */
+        .calculator-wrap {
+            background: #131313;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+        .calc-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .calc-group {
+            flex: 1;
+            min-width: 180px;
+        }
+        .calc-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #D4A373;
+            font-weight: 500;
+        }
+        .calc-group input, .calc-group select {
+            width: 100%;
+            padding: 12px;
+            background: #1E1E1E;
+            border: 1px solid #333;
+            color: #E0E0E0;
+            border-radius: 2px;
+        }
+        .result-area {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #0A0A0A;
+            border-left: 4px solid #D4A373;
+        }
+        .result-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #D4A373;
+        }
+        /* Before/After slider */
+        .ba-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .ba-item {
+            flex: 1;
+            background: #1A1A1A;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .ba-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+        .ba-item:hover .ba-img {
+            transform: scale(1.02);
+        }
+        .ba-caption {
+            padding: 1rem;
+            text-align: center;
+            font-weight: 500;
+        }
+        /* Swiper Gallery */
+        .swiper {
+            width: 100%;
+            padding: 20px 0;
+        }
+        .swiper-slide {
+            border-radius: 8px;
+            overflow: hidden;
+            height: 400px;
+        }
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* Contact Form */
+        .contact-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        .contact-info {
+            flex: 1;
+        }
+        .contact-form {
+            flex: 1;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 1rem;
+            background: #1A1A1A;
+            border: 1px solid #333;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+        }
+        footer {
+            background: #050505;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid #222;
+            margin-top: 3rem;
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 70%;
+                height: calc(100vh - 70px);
+                background: #0F0F0F;
+                flex-direction: column;
+                align-items: center;
+                padding-top: 3rem;
+                transition: 0.3s;
+            }
+            .nav-links.active { right: 0; }
+            .burger { display: flex; }
+            .section-title { font-size: 2.2rem; }
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<div class="preloader" id="preloader"><div class="loader-line"></div></div>
+
+<header id="header">
+    <div class="logo">BUILD<span>MASTER</span></div>
+    <div class="burger" id="burger"><span></span><span></span><span></span></div>
+    <div class="nav-links" id="navLinks">
+        <a href="#home">Главная</a>
+        <a href="#services">Услуги</a>
+        <a href="#calc">Калькулятор</a>
+        <a href="#projects">Проекты</a>
+        <a href="#contact">Контакты</a>
+    </div>
+</header>
+
+<section id="home" class="hero">
+    <div class="hero-bg-texture"></div>
+    <div class="hero-content">
+        <div class="hero-tag">РЕМОНТ ПОД КЛЮЧ</div>
+        <h1>Качество, которое <span>не требует</span> компромиссов</h1>
+        <p>Строительная компания BuildMaster — более 120 реализованных объектов. Дизайн, отделка, контроль сроков.</p>
+        <div class="btn-group">
+            <a href="#calc" class="btn btn-primary">Рассчитать смету</a>
+            <a href="#contact" class="btn btn-outline">Заказать звонок</a>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <section id="services">
+        <h2 class="section-title fade-in">Наши услуги</h2>
+        <div class="services-grid">
+            <div class="service-card fade-in"><i class="fas fa-drafting-compass"></i><h3>Дизайн проект</h3><p>3D-визуализация, планировка, подбор материалов</p></div>
+            <div class="service-card fade-in"><i class="fas fa-hard-hat"></i><h3>Черновая отделка</h3><p>Стяжка, штукатурка, электрика, сантехника</p></div>
+            <div class="service-card fade-in"><i class="fas fa-paint-roller"></i><h3>Чистовая отделка</h3><p>Плитка, обои, ламинат, покраска, двери</p></div>
+            <div class="service-card fade-in"><i class="fas fa-tools"></i><h3>Ремонт под ключ</h3><p>Полный цикл: от демонтажа до уборки и меблировки</p></div>
+        </div>
+    </section>
+
+    <section id="calc">
+        <h2 class="section-title fade-in">Калькулятор ремонта</h2>
+        <div class="calculator-wrap fade-in">
+            <div class="calc-row">
+                <div class="calc-group"><label>Площадь (м²)</label><input type="number" id="area" value="45" step="5"></div>
+                <div class="calc-group"><label>Тип помещения</label><select id="roomtype"><option value="1">Квартира</option><option value="1.2">Дом/Коттедж</option><option value="0.9">Офис</option></select></div>
+                <div class="calc-group"><label>Вид ремонта</label><select id="repairtype"><option value="5000">Эконом</option><option value="9500" selected>Стандарт</option><option value="15000">Премиум</option><option value="25000">Люкс</option></select></div>
+            </div>
+            <div class="result-area"><span class="result-price" id="priceResult">0 ₽</span><br><small>* Примерная стоимость материалов + работы. Точная смета после замера</small></div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title fade-in">До / После</h2>
+        <div class="ba-container">
+            <div class="ba-item fade-in"><img class="ba-img" src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800" alt="до"><div class="ba-caption">Квартира 75м² · ЖК "Золотые купола"</div></div>
+            <div class="ba-item fade-in"><img class="ba-img" src="https://images.pexels.com/photos/1571463/pexels-photo-1571463.jpeg?auto=compress&cs=tinysrgb&w=800" alt="после"><div class="ba-caption">Современный стиль, срок 2 месяца</div></div>
+        </div>
+        <div style="margin-top: 2rem;" class="fade-in"><div class="swiper mySwiper"><div class="swiper-wrapper"><div class="swiper-slide"><img src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=800" alt="проект 1"></div><div class="swiper-slide"><img src="https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&cs=tinysrgb&w=800" alt="проект 2"></div><div class="swiper-slide"><img src="https://images.pexels.com/photos/534151/pexels-photo-534151.jpeg?auto=compress&cs=tinysrgb&w=800" alt="проект 3"></div></div><div class="swiper-pagination"></div></div></div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title fade-in">Получить консультацию</h2>
+        <div class="contact-flex">
+            <div class="contact-info fade-in"><i class="fas fa-map-marker-alt" style="color:#D4A373;"></i> <p>Москва, ул. Строителей 12, БЦ "Технопарк"</p><i class="fas fa-phone-alt" style="color:#D4A373; margin-top:1rem;"></i> <p>+7 (495) 555-33-22</p><i class="fas fa-clock"></i> <p>Ежедневно 9:00–20:00</p></div>
+            <div class="contact-form fade-in"><form id="leadForm"><input type="text" placeholder="Ваше имя" id="name" required><input type="tel" placeholder="Телефон" id="phone" required><textarea rows="3" placeholder="Опишите задачу..."></textarea><button type="submit" class="btn btn-primary">Отправить заявку</button></form></div>
+        </div>
+    </section>
+</div>
+<footer><p>© 2025 BuildMaster — Ремонт под ключ. Все права защищены.</p></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    setTimeout(()=>document.getElementById('preloader').style.display='none', 800);
+    window.addEventListener('scroll',()=>{document.getElementById('header').classList.toggle('scrolled',window.scrollY>50)});
+    document.getElementById('burger').addEventListener('click',()=>{document.getElementById('navLinks').classList.toggle('active')});
+    document.querySelectorAll('.nav-links a').forEach(link=>{link.addEventListener('click',()=>{document.getElementById('navLinks').classList.remove('active')})});
+    
+    const calc = ()=>{let area=document.getElementById('area').value; let room=parseFloat(document.getElementById('roomtype').value); let price=parseInt(document.getElementById('repairtype').value); let total=area*room*price; document.getElementById('priceResult').innerText=total.toLocaleString()+' ₽';};
+    document.getElementById('area').addEventListener('input',calc); document.getElementById('roomtype').addEventListener('change',calc); document.getElementById('repairtype').addEventListener('change',calc); calc();
+    
+    new Swiper('.mySwiper', { slidesPerView:1, spaceBetween:20, loop:true, pagination:{el:'.swiper-pagination',clickable:true}, breakpoints:{640:{slidesPerView:2},1024:{slidesPerView:3}} });
+    
+    const faders=document.querySelectorAll('.fade-in'); const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1}); faders.forEach(f=>obs.observe(f));
+    
+    document.getElementById('leadForm').addEventListener('submit',(e)=>{e.preventDefault(); alert('✅ Заявка принята! Менеджер свяжется с вами в течение 15 минут.'); e.target.reset();});
+</script>
+</body>
+</html>
