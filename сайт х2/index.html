@@ -32,12 +32,6 @@
             margin-bottom: 2rem;
             text-align: center;
         }
-        .section-sub {
-            text-align: center;
-            max-width: 700px;
-            margin: -1rem auto 3rem auto;
-            color: #8A9BB0;
-        }
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -45,7 +39,7 @@
             position: relative;
             z-index: 5;
         }
-        /* === НОВЫЙ 3D ФОН === */
+        /* === 3D ФОН === */
         #canvas-bg {
             position: fixed;
             top: 0;
@@ -55,7 +49,6 @@
             z-index: 0;
             pointer-events: none;
         }
-        /* Preloader */
         .preloader {
             position: fixed;
             top: 0;
@@ -89,7 +82,6 @@
             0% { left: -50%; }
             100% { left: 100%; }
         }
-        /* Header */
         header {
             position: fixed;
             top: 0;
@@ -143,7 +135,6 @@
             margin: 4px;
             transition: 0.3s;
         }
-        /* Hero */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -218,7 +209,6 @@
             from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        /* Карточки услуг с прозрачностью */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -242,7 +232,6 @@
             color: #E6B17E;
             margin-bottom: 1rem;
         }
-        /* Калькулятор (без слова "смета") */
         .calculator-wrap {
             background: rgba(10, 20, 35, 0.85);
             backdrop-filter: blur(12px);
@@ -287,6 +276,7 @@
             font-weight: 700;
             color: #E6B17E;
         }
+        /* Блок ДО / ПОСЛЕ — без подписей */
         .ba-container {
             display: flex;
             flex-wrap: wrap;
@@ -298,12 +288,36 @@
             background: #111A24;
             border-radius: 20px;
             overflow: hidden;
+            position: relative;
+            cursor: pointer;
         }
         .ba-img {
             width: 100%;
-            height: 280px;
+            height: 320px;
             object-fit: cover;
             transition: 0.5s;
+            display: block;
+        }
+        .ba-item:hover .ba-img {
+            transform: scale(1.03);
+            filter: brightness(1.1);
+        }
+        .ba-item::after {
+            content: "🔍";
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            font-size: 24px;
+            color: #E6B17E;
+            opacity: 0;
+            transition: 0.3s;
+            background: rgba(0,0,0,0.5);
+            padding: 8px 12px;
+            border-radius: 30px;
+            backdrop-filter: blur(4px);
+        }
+        .ba-item:hover::after {
+            opacity: 1;
         }
         .contact-flex {
             display: flex;
@@ -351,6 +365,7 @@
             }
             .nav-links.active { right: 0; }
             .burger { display: flex; }
+            .ba-img { height: 220px; }
         }
         .fade-in {
             opacity: 0;
@@ -360,6 +375,21 @@
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+        /* Свайпер без подписей */
+        .swiper-slide img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+        .swiper-slide:hover img {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+        .swiper-pagination-bullet-active {
+            background: #E6B17E !important;
         }
     </style>
 </head>
@@ -385,7 +415,7 @@
     <div class="hero-content">
         <div class="hero-tag">РЕМОНТ ПОД КЛЮЧ</div>
         <h1>Качество, которое <span>не требует</span> компромиссов</h1>
-        <p>Строительная компания BuildMaster — более 120 реализованных объектов. Дизайн, отделка, контроль сроков.</p>
+        <p>BuildMaster — более 120 объектов. Дизайн, отделка, контроль сроков.</p>
         <div class="btn-group">
             <a href="#calc" class="btn btn-primary">Рассчитать стоимость</a>
             <a href="#contact" class="btn btn-outline">Заказать звонок</a>
@@ -397,10 +427,10 @@
     <section id="services">
         <h2 class="section-title fade-in">Наши услуги</h2>
         <div class="services-grid">
-            <div class="service-card fade-in"><i class="fas fa-drafting-compass"></i><h3>Дизайн проект</h3><p>3D-визуализация, планировка, подбор материалов</p></div>
-            <div class="service-card fade-in"><i class="fas fa-hard-hat"></i><h3>Черновая отделка</h3><p>Стяжка, штукатурка, электрика, сантехника</p></div>
-            <div class="service-card fade-in"><i class="fas fa-paint-roller"></i><h3>Чистовая отделка</h3><p>Плитка, обои, ламинат, покраска, двери</p></div>
-            <div class="service-card fade-in"><i class="fas fa-tools"></i><h3>Ремонт под ключ</h3><p>Полный цикл: от демонтажа до уборки и меблировки</p></div>
+            <div class="service-card fade-in"><i class="fas fa-drafting-compass"></i><h3>Дизайн проект</h3><p>3D-визуализация, планировка</p></div>
+            <div class="service-card fade-in"><i class="fas fa-hard-hat"></i><h3>Черновая отделка</h3><p>Стяжка, электрика, сантехника</p></div>
+            <div class="service-card fade-in"><i class="fas fa-paint-roller"></i><h3>Чистовая отделка</h3><p>Плитка, обои, ламинат, двери</p></div>
+            <div class="service-card fade-in"><i class="fas fa-tools"></i><h3>Ремонт под ключ</h3><p>От демонтажа до уборки</p></div>
         </div>
     </section>
 
@@ -412,159 +442,62 @@
                 <div class="calc-group"><label>Тип помещения</label><select id="roomtype"><option value="1">Квартира</option><option value="1.2">Дом/Коттедж</option><option value="0.9">Офис</option></select></div>
                 <div class="calc-group"><label>Вид ремонта</label><select id="repairtype"><option value="5000">Эконом</option><option value="9500" selected>Стандарт</option><option value="15000">Премиум</option><option value="25000">Люкс</option></select></div>
             </div>
-            <div class="result-area"><span class="result-price" id="priceResult">0 ₽</span><br><small>* Примерная стоимость материалов + работы. Точный расчёт после замера</small></div>
+            <div class="result-area"><span class="result-price" id="priceResult">0 ₽</span><br><small>* Примерная стоимость. Точный расчёт после замера</small></div>
         </div>
     </section>
 
     <section id="projects">
-        <h2 class="section-title fade-in">До / После</h2>
+        <h2 class="section-title fade-in">Наши работы</h2>
         <div class="ba-container">
-            <div class="ba-item fade-in"><img class="ba-img" src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800" alt="до"><div class="ba-caption">Квартира 75м² · ЖК "Золотые купола"</div></div>
-            <div class="ba-item fade-in"><img class="ba-img" src="https://images.pexels.com/photos/1571463/pexels-photo-1571463.jpeg?auto=compress&cs=tinysrgb&w=800" alt="после"><div class="ba-caption">Современный стиль, срок 2 месяца</div></div>
+            <div class="ba-item fade-in"><img class="ba-img" src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800" alt="до"></div>
+            <div class="ba-item fade-in"><img class="ba-img" src="https://images.pexels.com/photos/1571463/pexels-photo-1571463.jpeg?auto=compress&cs=tinysrgb&w=800" alt="после"></div>
         </div>
-        <div style="margin-top: 2rem;" class="fade-in"><div class="swiper mySwiper"><div class="swiper-wrapper"><div class="swiper-slide"><img src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=800" alt="проект 1"></div><div class="swiper-slide"><img src="https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&cs=tinysrgb&w=800" alt="проект 2"></div><div class="swiper-slide"><img src="https://images.pexels.com/photos/534151/pexels-photo-534151.jpeg?auto=compress&cs=tinysrgb&w=800" alt="проект 3"></div></div><div class="swiper-pagination"></div></div></div>
+        <div style="margin-top: 3rem;" class="fade-in">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=800" alt="проект"></div>
+                    <div class="swiper-slide"><img src="https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&cs=tinysrgb&w=800" alt="проект"></div>
+                    <div class="swiper-slide"><img src="https://images.pexels.com/photos/534151/pexels-photo-534151.jpeg?auto=compress&cs=tinysrgb&w=800" alt="проект"></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
     </section>
 
     <section id="contact">
         <h2 class="section-title fade-in">Получить консультацию</h2>
         <div class="contact-flex">
-            <div class="contact-info fade-in"><i class="fas fa-map-marker-alt" style="color:#E6B17E;"></i> <p>Москва, ул. Строителей 12, БЦ "Технопарк"</p><i class="fas fa-phone-alt" style="color:#E6B17E; margin-top:1rem;"></i> <p>+7 (495) 555-33-22</p><i class="fas fa-clock"></i> <p>Ежедневно 9:00–20:00</p></div>
+            <div class="contact-info fade-in"><i class="fas fa-map-marker-alt" style="color:#E6B17E;"></i> <p>Москва, ул. Строителей 12</p><i class="fas fa-phone-alt" style="color:#E6B17E; margin-top:1rem;"></i> <p>+7 (495) 555-33-22</p><i class="fas fa-clock"></i> <p>Ежедневно 9:00–20:00</p></div>
             <div class="contact-form fade-in"><form id="leadForm"><input type="text" placeholder="Ваше имя" id="name" required><input type="tel" placeholder="Телефон" id="phone" required><textarea rows="3" placeholder="Опишите задачу..."></textarea><button type="submit" class="btn btn-primary">Отправить заявку</button></form></div>
         </div>
     </section>
 </div>
-<footer><p>© 2025 BuildMaster — Ремонт под ключ. Все права защищены.</p></footer>
+<footer><p>© 2025 BuildMaster — Ремонт под ключ</p></footer>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-    // 3D ФОН — шестиугольная сетка + объект (куб)
+    // 3D фон (шестиугольники + объект)
     const canvas = document.getElementById('canvas-bg');
     const ctx = canvas.getContext('2d');
-    let width, height;
-    let mouseX = 0, mouseY = 0;
-    let time = 0;
+    let width, height, mouseX = 0, mouseY = 0, time = 0;
     let hexGrid = [];
-    
-    function resizeCanvas() {
-        width = window.innerWidth;
-        height = window.innerHeight;
-        canvas.width = width;
-        canvas.height = height;
-        initHexGrid();
-    }
-    
-    function initHexGrid() {
-        hexGrid = [];
-        const hexSize = 45;
-        const rows = Math.ceil(height / (hexSize * 1.7)) + 2;
-        const cols = Math.ceil(width / (hexSize * 1.5)) + 2;
-        for (let i = 0; i < rows; i++) {
-            for (let j = 0; j < cols; j++) {
-                let x = j * hexSize * 1.5;
-                let y = i * hexSize * 1.7 + (j % 2) * hexSize * 0.85;
-                hexGrid.push({ x, y, size: hexSize });
-            }
-        }
-    }
-    
-    function drawHexagon(x, y, size, glow) {
-        ctx.beginPath();
-        for (let i = 0; i < 6; i++) {
-            let angle = i * Math.PI / 3;
-            let px = x + size * Math.cos(angle);
-            let py = y + size * Math.sin(angle);
-            if (i === 0) ctx.moveTo(px, py);
-            else ctx.lineTo(px, py);
-        }
-        ctx.closePath();
-        ctx.strokeStyle = `rgba(230, 177, 126, ${0.2 + glow * 0.2})`;
-        ctx.lineWidth = 1.2;
-        ctx.stroke();
-    }
-    
-    function drawObject(px, py, timeVal) {
-        // Абстрактный 3D-объект — вращающийся куб в изометрии
-        const size3d = 80;
-        const angle = timeVal * 0.005;
-        const offsetX = Math.sin(angle) * 15;
-        const offsetY = Math.cos(angle * 0.7) * 10;
-        const centerX = px + offsetX;
-        const centerY = py - 40 + offsetY;
-        ctx.save();
-        ctx.shadowBlur = 20;
-        ctx.shadowColor = "#E6B17E";
-        ctx.beginPath();
-        // Верхняя грань
-        ctx.moveTo(centerX, centerY);
-        ctx.lineTo(centerX + size3d * 0.6, centerY - size3d * 0.4);
-        ctx.lineTo(centerX, centerY - size3d * 0.8);
-        ctx.lineTo(centerX - size3d * 0.6, centerY - size3d * 0.4);
-        ctx.fillStyle = "rgba(230, 177, 126, 0.25)";
-        ctx.fill();
-        ctx.strokeStyle = "#E6B17E";
-        ctx.stroke();
-        // Боковые грани
-        ctx.beginPath();
-        ctx.moveTo(centerX, centerY);
-        ctx.lineTo(centerX + size3d * 0.6, centerY - size3d * 0.4);
-        ctx.lineTo(centerX + size3d * 0.6, centerY + size3d * 0.2);
-        ctx.lineTo(centerX, centerY + size3d * 0.6);
-        ctx.fillStyle = "rgba(200, 140, 90, 0.2)";
-        ctx.fill();
-        ctx.stroke();
-        
-        ctx.beginPath();
-        ctx.moveTo(centerX, centerY);
-        ctx.lineTo(centerX - size3d * 0.6, centerY - size3d * 0.4);
-        ctx.lineTo(centerX - size3d * 0.6, centerY + size3d * 0.2);
-        ctx.lineTo(centerX, centerY + size3d * 0.6);
-        ctx.fillStyle = "rgba(180, 120, 70, 0.2)";
-        ctx.fill();
-        ctx.stroke();
-        ctx.restore();
-    }
-    
-    function animateBackground() {
-        if (!ctx) return;
-        ctx.clearRect(0, 0, width, height);
-        // Градиентный фон ярче
-        const grad = ctx.createLinearGradient(0, 0, width, height);
-        grad.addColorStop(0, '#0A1525');
-        grad.addColorStop(1, '#121F30');
-        ctx.fillStyle = grad;
-        ctx.fillRect(0, 0, width, height);
-        
-        time++;
-        for (let h of hexGrid) {
-            let dx = (mouseX - width/2) * 0.0005;
-            let dy = (mouseY - height/2) * 0.0005;
-            let glow = Math.sin(time * 0.01 + h.x * 0.01) * 0.5 + 0.5;
-            drawHexagon(h.x + dx * 20, h.y + dy * 15, h.size, glow);
-        }
-        // Динамический объект в правом нижнем углу
-        drawObject(width - 120, height - 120, time);
-        drawObject(width - 220, height - 80, time + 30);
-        requestAnimationFrame(animateBackground);
-    }
-    
+    function resizeCanvas() { width = window.innerWidth; height = window.innerHeight; canvas.width = width; canvas.height = height; initHexGrid(); }
+    function initHexGrid() { hexGrid = []; const hexSize = 45; const rows = Math.ceil(height / (hexSize * 1.7)) + 2; const cols = Math.ceil(width / (hexSize * 1.5)) + 2; for (let i = 0; i < rows; i++) for (let j = 0; j < cols; j++) { let x = j * hexSize * 1.5; let y = i * hexSize * 1.7 + (j % 2) * hexSize * 0.85; hexGrid.push({ x, y, size: hexSize }); } }
+    function drawHexagon(x, y, size, glow) { ctx.beginPath(); for (let i = 0; i < 6; i++) { let angle = i * Math.PI / 3; let px = x + size * Math.cos(angle); let py = y + size * Math.sin(angle); if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py); } ctx.closePath(); ctx.strokeStyle = `rgba(230, 177, 126, ${0.2 + glow * 0.2})`; ctx.lineWidth = 1.2; ctx.stroke(); }
+    function drawObject(px, py, timeVal) { const size3d = 80; const angle = timeVal * 0.005; const offsetX = Math.sin(angle) * 15; const offsetY = Math.cos(angle * 0.7) * 10; const centerX = px + offsetX; const centerY = py - 40 + offsetY; ctx.save(); ctx.shadowBlur = 20; ctx.shadowColor = "#E6B17E"; ctx.beginPath(); ctx.moveTo(centerX, centerY); ctx.lineTo(centerX + size3d * 0.6, centerY - size3d * 0.4); ctx.lineTo(centerX, centerY - size3d * 0.8); ctx.lineTo(centerX - size3d * 0.6, centerY - size3d * 0.4); ctx.fillStyle = "rgba(230, 177, 126, 0.25)"; ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.moveTo(centerX, centerY); ctx.lineTo(centerX + size3d * 0.6, centerY - size3d * 0.4); ctx.lineTo(centerX + size3d * 0.6, centerY + size3d * 0.2); ctx.lineTo(centerX, centerY + size3d * 0.6); ctx.fillStyle = "rgba(200, 140, 90, 0.2)"; ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.moveTo(centerX, centerY); ctx.lineTo(centerX - size3d * 0.6, centerY - size3d * 0.4); ctx.lineTo(centerX - size3d * 0.6, centerY + size3d * 0.2); ctx.lineTo(centerX, centerY + size3d * 0.6); ctx.fill(); ctx.stroke(); ctx.restore(); }
+    function animateBackground() { if (!ctx) return; ctx.clearRect(0, 0, width, height); const grad = ctx.createLinearGradient(0, 0, width, height); grad.addColorStop(0, '#0A1525'); grad.addColorStop(1, '#121F30'); ctx.fillStyle = grad; ctx.fillRect(0, 0, width, height); time++; for (let h of hexGrid) { let dx = (mouseX - width/2) * 0.0005; let dy = (mouseY - height/2) * 0.0005; let glow = Math.sin(time * 0.01 + h.x * 0.01) * 0.5 + 0.5; drawHexagon(h.x + dx * 20, h.y + dy * 15, h.size, glow); } drawObject(width - 120, height - 120, time); drawObject(width - 220, height - 80, time + 30); requestAnimationFrame(animateBackground); }
     window.addEventListener('resize', () => { resizeCanvas(); });
     window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
-    resizeCanvas();
-    animateBackground();
-    
+    resizeCanvas(); animateBackground();
     setTimeout(()=>document.getElementById('preloader').style.display='none', 800);
     window.addEventListener('scroll',()=>{document.getElementById('header').classList.toggle('scrolled',window.scrollY>50)});
     document.getElementById('burger').addEventListener('click',()=>{document.getElementById('navLinks').classList.toggle('active')});
     document.querySelectorAll('.nav-links a').forEach(link=>{link.addEventListener('click',()=>{document.getElementById('navLinks').classList.remove('active')})});
-    
     const calc = ()=>{let area=document.getElementById('area').value; let room=parseFloat(document.getElementById('roomtype').value); let price=parseInt(document.getElementById('repairtype').value); let total=area*room*price; document.getElementById('priceResult').innerText=total.toLocaleString()+' ₽';};
     document.getElementById('area').addEventListener('input',calc); document.getElementById('roomtype').addEventListener('change',calc); document.getElementById('repairtype').addEventListener('change',calc); calc();
-    
     new Swiper('.mySwiper', { slidesPerView:1, spaceBetween:20, loop:true, pagination:{el:'.swiper-pagination',clickable:true}, breakpoints:{640:{slidesPerView:2},1024:{slidesPerView:3}} });
-    
     const faders=document.querySelectorAll('.fade-in'); const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1}); faders.forEach(f=>obs.observe(f));
-    
-    document.getElementById('leadForm').addEventListener('submit',(e)=>{e.preventDefault(); alert('✅ Заявка принята! Менеджер свяжется с вами в ближайшее время.'); e.target.reset();});
+    document.getElementById('leadForm').addEventListener('submit',(e)=>{e.preventDefault(); alert('✅ Заявка принята! Менеджер свяжется с вами.'); e.target.reset();});
 </script>
 </body>
 </html>
